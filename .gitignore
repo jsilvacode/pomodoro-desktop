@@ -1,0 +1,34 @@
+# Dependencies
+node_modules/
+dist/
+
+# Rust/Tauri
+src-tauri/target/
+src-tauri/binaries/
+
+# OS/IDEs
+.DS_Store
+.vscode/
+.idea/
+
+# Artifacts
+*.md
+*.html
+!src/index.html
+!README.md
+!walkthrough.md
+!task.md
+!implementation_plan.md
+image_b64.txt
+input.bmp
+output.tga
+output.pam
+process.html
+process_template.html
+remove_bg.py
+remove_bg_pam.py
+remove_bg_pillow.py
+transparent_tomato.png
+transparent_tomato_final.png
+cartoon_tomato_final.png
+/Users/zeus/.gemini/antigravity/brain/0e9a97ca-43c3-4500-82fe-11081de6149b/

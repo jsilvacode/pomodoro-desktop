@@ -1,0 +1,374 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pomodoro Pro</title>
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #809BCE;
+            --primary-glow: rgba(128, 155, 206, 0.4);
+            --bg: #F0F4F8; 
+            --card-bg: rgba(255, 255, 255, 0.8);
+            --text: #2D3436;
+            --text-dim: #636E72;
+            --break-color: #95B8D1;
+            --accent: #EAC4D5;
+            --btn-bg: #D6EADF;
+            --mint: #B8E0D2;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+        
+        body {
+            font-family: 'Outfit', sans-serif;
+            background-color: var(--bg);
+            background-image: 
+                radial-gradient(at 10% 10%, var(--accent) 0vw, transparent 40vw),
+                radial-gradient(at 90% 90%, var(--btn-bg) 0vw, transparent 40vw),
+                radial-gradient(at 50% 50%, #FFFFFF 0vw, transparent 70vw);
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: var(--text);
+            overflow: auto;
+        }
+        
+        .container {
+            background: var(--card-bg);
+            backdrop-filter: blur(25px);
+            -webkit-backdrop-filter: blur(25px);
+            border: 0.5vmin solid white;
+            border-radius: 8vmin;
+            box-shadow: 0 5vmin 12vmin -3vmin rgba(128, 155, 206, 0.25);
+            padding: 7vmin 6vmin;
+            width: 85vmin;
+            max-width: 95vw;
+            max-height: 95vh;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            text-align: center;
+            position: relative;
+        }
+        
+        h1 {
+            font-size: clamp(0.8rem, 2.8vmin, 1.4rem);
+            text-transform: uppercase;
+            letter-spacing: 0.5em;
+            color: var(--primary);
+            margin-bottom: 4vmin;
+            font-weight: 700;
+            opacity: 0.8;
+            width: 100%;
+            text-align: center;
+        }
+        
+        .timer-display {
+            font-family: 'JetBrains Mono', monospace;
+            font-size: clamp(4rem, 20vmin, 15rem);
+            font-weight: 500;
+            margin: 1vmin 0 3vmin;
+            color: var(--primary);
+            width: 100%;
+        }
+
+        .timer-display.break { color: var(--text-dim); }
+        
+        .status-badge {
+            display: inline-flex;
+            align-items: center;
+            padding: 1.5vmin 4vmin;
+            border-radius: 100vmin;
+            font-weight: 800;
+            font-size: clamp(0.7rem, 2.2vmin, 1rem);
+            letter-spacing: 0.2em;
+            text-transform: uppercase;
+            margin-bottom: 3vmin;
+            background: white;
+            box-shadow: 0 1.5vmin 3vmin -1vmin rgba(0,0,0,0.08);
+            border: 1px solid rgba(0,0,0,0.03);
+        }
+
+        .status-badge.work { color: white; background: var(--primary); box-shadow: 0 2vmin 4vmin var(--primary-glow); }
+        .status-badge.break { color: var(--text); background: var(--mint); }
+
+        .cycle-dot-container {
+            display: flex;
+            justify-content: center;
+            gap: 2.5vmin;
+            margin-bottom: 5vmin;
+            width: 100%;
+        }
+
+        .cycle-dot {
+            width: 2.2vmin;
+            height: 2.2vmin;
+            min-width: 10px;
+            min-height: 10px;
+            border-radius: 1.5vmin;
+            background: white;
+            border: 0.4vmin solid var(--bg);
+            transition: all 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .cycle-dot.filled {
+            background: var(--primary);
+            border-color: var(--primary);
+            width: 7.5vmin;
+        }
+        
+        .controls {
+            display: flex;
+            gap: 4vmin;
+            justify-content: center;
+            align-items: center;
+            width: 100%;
+        }
+        
+        .btn {
+            background: white;
+            color: var(--primary);
+            border: none;
+            width: clamp(75px, 18vmin, 130px);
+            height: clamp(75px, 18vmin, 130px);
+            border-radius: clamp(24px, 5vmin, 40px);
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 0;
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+            box-shadow: 0 1.5vmin 3vmin -1vmin rgba(0,0,0,0.1);
+        }
+        
+        .btn:hover:not(:disabled) {
+            transform: translateY(-1vmin) scale(1.03);
+            box-shadow: 0 3vmin 6vmin -2vmin rgba(128, 155, 206, 0.25);
+            background: white;
+            color: #5a7bb5;
+        }
+
+        .btn:active:not(:disabled) {
+            transform: scale(0.92);
+        }
+        
+        .btn-primary {
+            background: var(--primary);
+            color: white;
+            box-shadow: 0 3vmin 6vmin -2vmin var(--primary-glow);
+        }
+
+        .btn-primary:hover:not(:disabled) {
+            background: #6D8AC3;
+            color: white;
+            transform: translateY(-1vmin) scale(1.05);
+        }
+        
+        .btn:disabled {
+            opacity: 0.3;
+            cursor: not-allowed;
+            filter: grayscale(1);
+        }
+
+        svg {
+            width: 45%;
+            height: 45%;
+            display: block;
+            fill: none;
+            stroke: currentColor;
+            stroke-width: 2.8;
+            stroke-linecap: round;
+            stroke-linejoin: round;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1>Pomodoro Pro</h1>
+        
+        <div class="status-badge work" id="statusBadge">ENFOQUE</div>
+
+        <div class="timer-display working" id="timer">25:00</div>
+
+        <div class="cycle-dot-container" id="cycleDots">
+            <div class="cycle-dot"></div>
+            <div class="cycle-dot"></div>
+            <div class="cycle-dot"></div>
+            <div class="cycle-dot"></div>
+        </div>
+
+        <div class="controls">
+            <button id="reset" class="btn" title="Reiniciar">
+                <svg viewBox="0 0 24 24"><path d="M3 12a9 9 0 1 0 9-9 9.75 9.75 0 0 0-6.74 2.74L3 8m0-5v5h5"/></svg>
+            </button>
+            <button id="start" class="btn btn-primary" title="Iniciar">
+                <svg id="playIcon" viewBox="0 0 24 24"><polygon points="5 3 19 12 5 21 5 3"/></svg>
+                <svg id="pauseIcon" style="display:none" viewBox="0 0 24 24"><rect x="6" y="4" width="4" height="16"/><rect x="14" y="4" width="4" height="16"/></svg>
+            </button>
+            <button id="pause" class="btn" disabled title="Pausar" style="display:none">Pausa</button> <!-- Hidden but kept for logic for now -->
+        </div>
+    </div>
+
+    <script>
+        // Configuracion
+        const TIMES = {
+            WORK: 25 * 60 * 1000,
+            SHORT_BREAK: 5 * 60 * 1000,
+            LONG_BREAK: 15 * 60 * 1000
+        };
+
+        // Estado
+        let timerId = null;
+        let remainingTime = TIMES.WORK;
+        let targetTime = null;
+        let isRunning = false;
+        let isWorkSession = true;
+        let cyclesCompleted = 0;
+
+        const timerElement = document.getElementById('timer');
+        const startBtn = document.getElementById('start');
+        const resetBtn = document.getElementById('reset');
+        const statusBadge = document.getElementById('statusBadge');
+        const playIcon = document.getElementById('playIcon');
+        const pauseIcon = document.getElementById('pauseIcon');
+        const cycleDots = document.querySelectorAll('.cycle-dot');
+
+        function updateDisplay() {
+            const totalSeconds = Math.ceil(remainingTime / 1000);
+            const m = Math.floor(totalSeconds / 60);
+            const s = totalSeconds % 60;
+            timerElement.textContent = `${m.toString().padStart(2, '0')}:${s.toString().padStart(2, '0')}`;
+            
+            // UI Updates
+            if (isWorkSession) {
+                statusBadge.textContent = "CONCENTRACIÓN";
+                statusBadge.className = "status-badge work";
+                timerElement.className = "timer-display working";
+            } else {
+                statusBadge.textContent = (cyclesCompleted === 0) ? "DESCANSO LARGO" : "DESCANSO CORTO";
+                statusBadge.className = "status-badge break";
+                timerElement.className = "timer-display break";
+            }
+
+            // Sync dots
+            cycleDots.forEach((dot, index) => {
+                dot.classList.toggle('filled', index < cyclesCompleted);
+            });
+        }
+
+        // Audio Alarma
+        function playAlarm() {
+            try {
+                const audioCtx = new (window.AudioContext || window.webkitAudioContext)();
+                const playBeep = (freq, time, duration) => {
+                    const oscillator = audioCtx.createOscillator();
+                    const gainNode = audioCtx.createGain();
+                    oscillator.connect(gainNode);
+                    gainNode.connect(audioCtx.destination);
+                    oscillator.type = 'sine';
+                    oscillator.frequency.setValueAtTime(freq, time);
+                    gainNode.gain.setValueAtTime(0.5, time);
+                    gainNode.gain.exponentialRampToValueAtTime(0.01, time + duration);
+                    oscillator.start(time);
+                    oscillator.stop(time + duration);
+                };
+                // Doble beep elegante
+                playBeep(880, audioCtx.currentTime, 0.4);
+                playBeep(1100, audioCtx.currentTime + 0.5, 0.6);
+            } catch (e) {
+                console.error("Error al reproducir audio:", e);
+            }
+        }
+
+        function notify(title, message) {
+            playAlarm(); // Alarma sonora
+            if ('Notification' in window && Notification.permission === 'granted') {
+                new Notification(title, { body: message, icon: 'icon-192.png' });
+            }
+        }
+
+        function switchSession() {
+            if (isWorkSession) {
+                cyclesCompleted++;
+                if (cyclesCompleted >= 4) {
+                    cyclesCompleted = 0;
+                    remainingTime = TIMES.LONG_BREAK;
+                    notify('¡Excelente trabajo!', 'Es hora de un descanso largo de 15 minutos.');
+                } else {
+                    remainingTime = TIMES.SHORT_BREAK;
+                    notify('¡Sesión terminada!', 'Tómate un pequeño descanso de 5 minutos.');
+                }
+            } else {
+                remainingTime = TIMES.WORK;
+                notify('¡Regresamos!', 'Hora de enfocarse de nuevo.');
+            }
+            isWorkSession = !isWorkSession;
+            isRunning = false;
+            clearInterval(timerId);
+            timerId = null;
+            togglePlayUI(false);
+            updateDisplay();
+        }
+
+        function tick() {
+            if (!isRunning) return;
+            
+            const now = Date.now();
+            remainingTime = Math.max(0, targetTime - now);
+            
+            if (remainingTime <= 0) {
+                switchSession();
+            } else {
+                updateDisplay();
+            }
+        }
+
+        function togglePlayUI(playing) {
+            playIcon.style.display = playing ? 'none' : 'block';
+            pauseIcon.style.display = playing ? 'block' : 'none';
+        }
+
+        startBtn.addEventListener('click', () => {
+            if (isRunning) {
+                // Peusar
+                isRunning = false;
+                clearInterval(timerId);
+                timerId = null;
+                togglePlayUI(false);
+            } else {
+                // Iniciar
+                isRunning = true;
+                targetTime = Date.now() + remainingTime;
+                timerId = setInterval(tick, 100); // 10 ticks/seg para más fluidez
+                togglePlayUI(true);
+            }
+        });
+
+        resetBtn.addEventListener('click', () => {
+            isRunning = false;
+            clearInterval(timerId);
+            timerId = null;
+            isWorkSession = true;
+            cyclesCompleted = 0; // Reset cycles on hard reset? Let's say yes for simplicity.
+            remainingTime = TIMES.WORK;
+            togglePlayUI(false);
+            updateDisplay();
+        });
+
+        // Initialize display
+        updateDisplay();
+        console.log('Pomodoro Pro listo con precisión de tiempo absoluta.');
+    </script>
+</body>
+</html>

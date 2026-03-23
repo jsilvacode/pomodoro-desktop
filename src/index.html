@@ -8,6 +8,9 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;600;700&family=JetBrains+Mono:wght@500&display=swap" rel="stylesheet">
+    <link rel="manifest" href="manifest.json">
+    <meta name="theme-color" content="#FF3B30">
+    <link rel="apple-touch-icon" href="icons/icon.png">
     <style>
         :root {
             --primary: #809BCE;
@@ -479,6 +482,15 @@
         // Initialize display
         updateDisplay();
         console.log('Pomodoro Pro listo con precisión de tiempo absoluta.');
+
+        // Register Service Worker for PWA
+        if ('serviceWorker' in navigator) {
+            window.addEventListener('load', () => {
+                navigator.serviceWorker.register('./sw.js')
+                    .then(reg => console.log('Service Worker registrado.', reg.scope))
+                    .catch(err => console.log('Error al registrar Service Worker.', err));
+            });
+        }
     </script>
 </body>
 </html>

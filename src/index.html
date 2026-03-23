@@ -278,43 +278,43 @@
 
         .install-btn {
             position: fixed;
-            top: 4vmin;
-            left: 50%;
-            transform: translateX(-50%);
-            background: rgba(255, 59, 48, 0.95);
-            color: white;
+            top: 2.5vmin;
+            left: 4vmin;
+            background: linear-gradient(135deg, #FFB703 0%, #FB8500 100%);
+            color: #000;
             border: none;
-            padding: 2vmin 5vmin;
-            border-radius: 6vmin;
+            padding: 1.5vmin 4vmin;
+            border-radius: 5vmin;
             font-family: 'Outfit', sans-serif;
             font-weight: 700;
-            font-size: 3.5vmin;
+            font-size: 2.8vmin;
             cursor: pointer;
             display: none;
-            box-shadow: 0 1vmin 4vmin rgba(255, 59, 48, 0.4);
+            box-shadow: 0 1vmin 3vmin rgba(251, 133, 0, 0.4);
             transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
             z-index: 1000;
             white-space: nowrap;
+            letter-spacing: 0.1vmin;
         }
 
         .install-btn:hover {
-            transform: translateX(-50%) scale(1.08);
+            transform: scale(1.08);
             filter: brightness(1.1);
+            box-shadow: 0 1.5vmin 4vmin rgba(251, 133, 0, 0.6);
         }
 
         /* iOS Message Badge */
         .ios-install-badge {
             position: fixed;
-            top: 4vmin;
+            top: 2.5vmin;
             left: 50%;
             transform: translateX(-50%);
             background: rgba(255, 255, 255, 0.9);
             color: #1a1a1a;
-            padding: 2vmin 5vmin;
+            padding: 1.5vmin 4.5vmin;
             border-radius: 6vmin;
             font-family: 'Outfit', sans-serif;
-            font-size: 3.2vmax;
-            font-size: 3.2vmin;
+            font-size: 3vmin;
             font-weight: 500;
             display: none;
             box-shadow: 0 1vmin 3vmin rgba(0,0,0,0.2);
@@ -340,7 +340,7 @@
     </style>
 </head>
 <body>
-    <button class="install-btn" id="installBtn">✨ INSTALAR POMODORO PRO</button>
+    <button class="install-btn" id="installBtn">✨ INSTALL</button>
     <div id="iosInstallBadge" class="ios-install-badge">
         📱 Toca <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle;"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> y luego "Añadir a pantalla de inicio"
     </div>

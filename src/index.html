@@ -191,13 +191,24 @@
             stroke-linecap: round;
             stroke-linejoin: round;
         }
+
+        .footer {
+            position: absolute;
+            bottom: 3.5vmin;
+            font-size: clamp(0.6rem, 1.6vmin, 0.8rem);
+            letter-spacing: 0.15em;
+            color: var(--text-dim);
+            opacity: 0.6;
+            font-weight: 600;
+            text-transform: uppercase;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <h1>Pomodoro Pro</h1>
         
-        <div class="status-badge work" id="statusBadge">ENFOQUE</div>
+        <div class="status-badge work" id="statusBadge">FOCUS TIME</div>
 
         <div class="timer-display working" id="timer">25:00</div>
 
@@ -218,6 +229,8 @@
             </button>
             <button id="pause" class="btn" disabled title="Pausar" style="display:none">Pausa</button> <!-- Hidden but kept for logic for now -->
         </div>
+
+        <div class="footer">© by WEB ARTISAN SPA</div>
     </div>
 
     <script>
@@ -252,11 +265,11 @@
             
             // UI Updates
             if (isWorkSession) {
-                statusBadge.textContent = "CONCENTRACIÓN";
+                statusBadge.textContent = "FOCUS TIME";
                 statusBadge.className = "status-badge work";
                 timerElement.className = "timer-display working";
             } else {
-                statusBadge.textContent = (cyclesCompleted === 0) ? "DESCANSO LARGO" : "DESCANSO CORTO";
+                statusBadge.textContent = (cyclesCompleted === 0) ? "RELAX (LONG)" : "RELAX (SHORT)";
                 statusBadge.className = "status-badge break";
                 timerElement.className = "timer-display break";
             }
@@ -304,14 +317,14 @@
                 if (cyclesCompleted >= 4) {
                     cyclesCompleted = 0;
                     remainingTime = TIMES.LONG_BREAK;
-                    notify('¡Excelente trabajo!', 'Es hora de un descanso largo de 15 minutos.');
+                    notify('Great work!', 'Time for a big 15-minute relax.');
                 } else {
                     remainingTime = TIMES.SHORT_BREAK;
-                    notify('¡Sesión terminada!', 'Tómate un pequeño descanso de 5 minutos.');
+                    notify('Session finished!', 'Take a quick 5-minute relax.');
                 }
             } else {
                 remainingTime = TIMES.WORK;
-                notify('¡Regresamos!', 'Hora de enfocarse de nuevo.');
+                notify("We're back!", 'Time to focus again.');
             }
             isWorkSession = !isWorkSession;
             isRunning = false;

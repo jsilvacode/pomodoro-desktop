@@ -5,6 +5,7 @@ const ASSETS = [
   './manifest.json',
   './icons/32x32.png',
   './icons/128x128.png',
+  './icons/192x192.png',
   './icons/icon.png'
 ];
 

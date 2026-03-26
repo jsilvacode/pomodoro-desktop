@@ -340,7 +340,7 @@
     </style>
 </head>
 <body>
-    <button class="install-btn" id="installBtn">✨ INSTALL</button>
+    <button class="install-btn" id="installBtn">✨ INSTALAR</button>
     <div id="iosInstallBadge" class="ios-install-badge">
         📱 Toca <svg width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" style="vertical-align: middle;"><path d="M4 12v8a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2v-8"/><polyline points="16 6 12 2 8 6"/><line x1="12" y1="2" x2="12" y2="15"/></svg> y luego "Añadir a pantalla de inicio"
     </div>
@@ -351,7 +351,7 @@
         </button>
         <h1>Pomodoro Pro</h1>
         
-        <div class="status-badge work" id="statusBadge">FOCUS TIME</div>
+        <div class="status-badge work" id="statusBadge">TIEMPO DE ENFOQUE</div>
 
         <div class="timer-display working" id="timer">25:00</div>
 
@@ -439,14 +439,14 @@
             
             // UI Updates
             if (isWorkSession) {
-                statusBadge.textContent = "FOCUS TIME";
+                statusBadge.textContent = "TIEMPO DE ENFOQUE";
                 statusBadge.className = "status-badge work";
                 timerElement.className = "timer-display working";
                 if (document.body.classList.contains('dark-mode')) {
                     document.body.style.backgroundImage = `radial-gradient(at 0% 0%, #FF3B30 0vmin, transparent 50vmin), radial-gradient(at 100% 100%, #141E30 0vmin, transparent 60vmin), radial-gradient(at 50% 50%, #050505 0vmin, transparent 100vmin)`;
                 }
             } else {
-                statusBadge.textContent = (cyclesCompleted === 0) ? "RELAX (LONG)" : "RELAX (SHORT)";
+                statusBadge.textContent = (cyclesCompleted === 0) ? "DESCANSO (LARGO)" : "DESCANSO (CORTO)";
                 statusBadge.className = "status-badge break";
                 timerElement.className = "timer-display break";
                 if (document.body.classList.contains('dark-mode')) {
@@ -497,14 +497,14 @@
                 if (cyclesCompleted >= 4) {
                     cyclesCompleted = 0;
                     remainingTime = TIMES.LONG_BREAK;
-                    notify('Great work!', 'Time for a big 15-minute relax.');
+                    notify('¡Buen trabajo!', 'Es hora de un gran descanso de 15 minutos.');
                 } else {
                     remainingTime = TIMES.SHORT_BREAK;
-                    notify('Session finished!', 'Take a quick 5-minute relax.');
+                    notify('¡Sesión finalizada!', 'Tómate un breve descanso de 5 minutos.');
                 }
             } else {
                 remainingTime = TIMES.WORK;
-                notify("We're back!", 'Time to focus again.');
+                notify('¡De vuelta!', 'Es hora de concentrarse de nuevo.');
             }
             isWorkSession = !isWorkSession;
             isRunning = false;

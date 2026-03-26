@@ -1,0 +1,216 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>jsilvacode — Developer Portfolio</title>
+  <meta name="description" content="Portfolio of jsilvacode — open-source developer building modern tools and apps." />
+  <!-- Google Fonts -->
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="styles.css" />
+</head>
+<body>
+
+  <!-- ─── NAVIGATION ─────────────────────────────────────────────────────────── -->
+  <header class="nav" id="nav">
+    <div class="nav__inner">
+      <a class="nav__logo" href="#hero">jsilvacode</a>
+      <nav class="nav__links">
+        <a href="#projects">Projects</a>
+        <a href="#support">Support</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <button class="nav__theme" id="themeToggle" aria-label="Toggle dark mode">
+        <span class="icon-sun">☀</span>
+        <span class="icon-moon">☽</span>
+      </button>
+    </div>
+  </header>
+
+  <!-- ─── HERO ───────────────────────────────────────────────────────────────── -->
+  <section class="hero" id="hero">
+    <div class="hero__content">
+      <p class="hero__greeting">Hey there, I'm</p>
+      <h1 class="hero__name">jsilvacode</h1>
+      <p class="hero__tagline">Open-source developer · Building elegant tools that matter</p>
+      <div class="hero__cta">
+        <a class="btn btn--primary" href="#projects">View Projects</a>
+        <a class="btn btn--ghost" href="#contact">Get in Touch</a>
+      </div>
+      <div class="hero__socials">
+        <a class="social-link" href="https://github.com/jsilvacode" target="_blank" rel="noopener" aria-label="GitHub">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+        </a>
+        <a class="social-link" href="https://twitter.com/jsilvacode" target="_blank" rel="noopener" aria-label="Twitter / X">
+          <svg viewBox="0 0 24 24" fill="currentColor" width="22" height="22"><path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/></svg>
+        </a>
+        <a class="social-link" href="mailto:hello@jsilvacode.dev" aria-label="Email">
+          <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" width="22" height="22"><rect x="2" y="4" width="20" height="16" rx="2"/><path d="m22 7-8.97 5.7a1.94 1.94 0 0 1-2.06 0L2 7"/></svg>
+        </a>
+      </div>
+    </div>
+    <div class="hero__blob" aria-hidden="true"></div>
+  </section>
+
+  <!-- ─── PROJECTS ───────────────────────────────────────────────────────────── -->
+  <section class="section projects" id="projects">
+    <div class="section__inner">
+      <h2 class="section__title">Projects</h2>
+      <p class="section__subtitle">A selection of things I've built and shipped.</p>
+
+      <div class="projects__grid" id="projectsGrid">
+
+        <!-- Project Card 1 -->
+        <article class="project-card">
+          <div class="project-card__image">
+            <img src="https://raw.githubusercontent.com/jsilvacode/pomodoro-desktop/main/src/icon-512.png"
+                 alt="Pomodoro Pro screenshot"
+                 loading="lazy"
+                 onerror="this.src='https://placehold.co/600x340/1a1a2e/ffffff?text=Pomodoro+Pro'" />
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span class="tag">Tauri</span>
+              <span class="tag">Rust</span>
+              <span class="tag">JavaScript</span>
+            </div>
+            <h3 class="project-card__title">Pomodoro Pro 🍅</h3>
+            <p class="project-card__desc">
+              A high-precision desktop Pomodoro timer built with Tauri and Rust.
+              Features glassmorphism UI, system tray, audio alerts, and multi-platform builds.
+            </p>
+            <div class="project-card__links">
+              <a class="btn btn--sm btn--primary" href="https://github.com/jsilvacode/pomodoro-desktop" target="_blank" rel="noopener">
+                <svg viewBox="0 0 24 24" fill="currentColor" width="16" height="16"><path d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0 1 12 6.844a9.59 9.59 0 0 1 2.504.337c1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.02 10.02 0 0 0 22 12.017C22 6.484 17.522 2 12 2z"/></svg>
+                Source Code
+              </a>
+              <a class="btn btn--sm btn--ghost" href="https://github.com/jsilvacode/pomodoro-desktop/releases" target="_blank" rel="noopener">
+                ↗ Live / Download
+              </a>
+            </div>
+          </div>
+        </article>
+
+        <!-- Project Card 2 (placeholder — add your next project) -->
+        <article class="project-card project-card--placeholder">
+          <div class="project-card__image project-card__image--placeholder">
+            <div class="placeholder-icon">+</div>
+          </div>
+          <div class="project-card__body">
+            <div class="project-card__meta">
+              <span class="tag">Coming soon</span>
+            </div>
+            <h3 class="project-card__title">Your Next Project</h3>
+            <p class="project-card__desc">
+              More open-source tools are on the way. Star the GitHub profile to get notified when new projects drop.
+            </p>
+            <div class="project-card__links">
+              <a class="btn btn--sm btn--ghost" href="https://github.com/jsilvacode" target="_blank" rel="noopener">Follow on GitHub</a>
+            </div>
+          </div>
+        </article>
+
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── SUPPORT ────────────────────────────────────────────────────────────── -->
+  <section class="section support" id="support">
+    <div class="section__inner support__inner">
+      <div class="support__text">
+        <h2 class="section__title">Support My Work</h2>
+        <p class="support__desc">
+          All my projects are free and open-source. If something I've built has saved you time
+          or inspired you, consider buying me a coffee — it helps me keep building and shipping. ☕
+        </p>
+        <a class="btn btn--coffee"
+           href="https://www.buymeacoffee.com/jsilvacode"
+           target="_blank"
+           rel="noopener">
+          <img src="https://cdn.buymeacoffee.com/buttons/bmc-new-btn-logo.svg" alt="" width="22" height="22" />
+          Buy me a coffee
+        </a>
+      </div>
+      <div class="support__visual" aria-hidden="true">
+        <div class="coffee-cup">
+          <div class="coffee-steam">
+            <span></span><span></span><span></span>
+          </div>
+          ☕
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── CONTACT / COMMUNITY ────────────────────────────────────────────────── -->
+  <section class="section contact" id="contact">
+    <div class="section__inner">
+      <h2 class="section__title">Say Hello</h2>
+      <p class="section__subtitle">
+        Questions, collabs, feedback — drop a message and I'll get back to you.
+      </p>
+
+      <div class="contact__layout">
+        <!-- Message Form -->
+        <form class="message-form" id="messageForm" novalidate>
+          <div class="form-group">
+            <label for="msgName">Name</label>
+            <input id="msgName" type="text" placeholder="Your name" autocomplete="name" required />
+          </div>
+          <div class="form-group">
+            <label for="msgEmail">Email</label>
+            <input id="msgEmail" type="email" placeholder="you@example.com" autocomplete="email" required />
+          </div>
+          <div class="form-group">
+            <label for="msgText">Message</label>
+            <textarea id="msgText" rows="5" placeholder="What's on your mind?" required></textarea>
+          </div>
+          <button class="btn btn--primary btn--full" type="submit">Send Message ✉</button>
+          <p class="form-note" id="formNote" aria-live="polite"></p>
+        </form>
+
+        <!-- Community Messages -->
+        <div class="community">
+          <h3 class="community__title">Community Wall</h3>
+          <p class="community__hint">Messages sent above appear here after review.</p>
+          <div class="community__feed" id="communityFeed">
+            <!-- Seed messages -->
+            <div class="message-bubble">
+              <div class="message-bubble__header">
+                <span class="message-bubble__author">Alice T.</span>
+                <span class="message-bubble__date">Mar 2025</span>
+              </div>
+              <p>Love the Pomodoro app! The glassmorphism design is chef's kiss 🍅</p>
+            </div>
+            <div class="message-bubble">
+              <div class="message-bubble__header">
+                <span class="message-bubble__author">Dev Community</span>
+                <span class="message-bubble__date">Feb 2025</span>
+              </div>
+              <p>Open-source tools like this are what make the ecosystem great. Keep shipping! 🚀</p>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ─── FOOTER ─────────────────────────────────────────────────────────────── -->
+  <footer class="footer">
+    <div class="footer__inner">
+      <p class="footer__brand">jsilvacode</p>
+      <nav class="footer__nav">
+        <a href="#projects">Projects</a>
+        <a href="https://github.com/jsilvacode" target="_blank" rel="noopener">GitHub</a>
+        <a href="#support">Support</a>
+        <a href="#contact">Contact</a>
+      </nav>
+      <p class="footer__copy">© <span id="year"></span> jsilvacode · Built with ♥ and open-source tools</p>
+    </div>
+  </footer>
+
+  <script src="main.js"></script>
+</body>
+</html>

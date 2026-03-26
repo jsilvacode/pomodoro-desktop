@@ -15,6 +15,7 @@ src-tauri/binaries/
 *.md
 *.html
 !src/index.html
+!portfolio/index.html
 !README.md
 !walkthrough.md
 !task.md
